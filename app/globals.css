@@ -1,26 +1,174 @@
 @import "tailwindcss";
 
+@theme {
+  /* Mendaftarkan nama kelas ke Tailwind v4 */
+  --color-background: var(--theme-background);
+  --color-surface: var(--theme-surface);
+  --color-surface-alt: var(--theme-surface-alt);
+  --color-surface-hover: var(--theme-surface-hover);
+  --color-border: var(--theme-border);
+  --color-border-light: var(--theme-border-light);
+  --color-text-primary: var(--theme-text-primary);
+  --color-text-secondary: var(--theme-text-secondary);
+  --color-text-tertiary: var(--theme-text-tertiary);
+  --color-accent: var(--theme-accent);
+  --color-accent-hover: var(--theme-accent-hover);
+  --color-accent-dim: var(--theme-accent-dim);
+  --color-green: var(--theme-green);
+  --color-green-dim: var(--theme-green-dim);
+  --color-red: var(--theme-red);
+  --color-red-dim: var(--theme-red-dim);
+  --color-orange: var(--theme-orange);
+  --color-orange-dim: var(--theme-orange-dim);
+  --color-blue: var(--theme-blue);
+  --color-blue-dim: var(--theme-blue-dim);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* === LIGHT COMPANY STYLE PALETTE === */
+  --theme-background: #f8fafc;
+  --theme-surface: #ffffff;
+  --theme-surface-alt: #f1f5f9;
+  --theme-surface-hover: #e2e8f0;
+
+  --theme-border: #e2e8f0;
+  --theme-border-light: #cbd5e1;
+
+  --theme-text-primary: #0f172a;
+  --theme-text-secondary: #475569;
+  --theme-text-tertiary: #64748b;
+
+  /* Blue accent — professional, corporate, bright but safe */
+  --theme-accent: #2563eb;
+  --theme-accent-hover: #1d4ed8;
+  --theme-accent-dim: rgba(37, 99, 235, 0.1);
+
+  /* Semantic colors */
+  --theme-green: #10b981;
+  --theme-green-dim: rgba(16, 185, 129, 0.1);
+  --theme-red: #ef4444;
+  --theme-red-dim: rgba(239, 68, 68, 0.1);
+  --theme-orange: #f59e0b;
+  --theme-orange-dim: rgba(245, 158, 11, 0.1);
+  --theme-blue: #3b82f6;
+  --theme-blue-dim: rgba(59, 130, 246, 0.1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  /* === WARM PREMIUM DARK PALETTE === */
+  --theme-background: #0c0f1a;
+  --theme-surface: #141828;
+  --theme-surface-alt: #1a1f35;
+  --theme-surface-hover: #1e2440;
+
+  --theme-border: #252d48;
+  --theme-border-light: #2e3756;
+
+  --theme-text-primary: #eef0f6;
+  --theme-text-secondary: #a0a8c4;
+  --theme-text-tertiary: #636e8e;
+
+  /* Blue accent — matching light mode but adapted for dark background */
+  --theme-accent: #3b82f6;
+  --theme-accent-hover: #60a5fa;
+  --theme-accent-dim: rgba(59, 130, 246, 0.15);
+
+  /* Semantic colors */
+  --theme-green: #34d399;
+  --theme-green-dim: rgba(52, 211, 153, 0.12);
+  --theme-red: #f87171;
+  --theme-red-dim: rgba(248, 113, 113, 0.12);
+  --theme-orange: #fbbf24;
+  --theme-orange-dim: rgba(251, 191, 36, 0.12);
+  --theme-blue: #60a5fa;
+  --theme-blue-dim: rgba(96, 165, 250, 0.12);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* === BASE === */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-border) transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--theme-background);
+  color: var(--theme-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === SKELETON LOADER === */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--theme-surface) 25%,
+    var(--theme-surface-alt) 50%,
+    var(--theme-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* === ANIMATIONS === */
+.fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === CARD STYLE === */
+.card {
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.card-hover {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card-hover:hover {
+  border-color: var(--theme-accent);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08), 0 1px 3px rgba(37, 99, 235, 0.05);
+}
+
+/* === TOOLTIP === */
+.tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: help;
+}
+.tooltip-wrapper .tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--theme-surface-alt);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-text-secondary);
+  font-size: 11px;
+  font-weight: 400;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  z-index: 50;
+  transition: opacity 0.15s;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.tooltip-wrapper:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }
