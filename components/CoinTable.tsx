@@ -146,7 +146,7 @@ export default function CoinTable() {
       <Link
         key={coin.id}
         href={`/coin/${coin.id}`}
-        className="grid grid-cols-[auto_auto_1fr_auto] sm:grid-cols-[40px_40px_1.5fr_150px_80px_160px_100px] lg:grid-cols-[40px_40px_1.5fr_150px_80px_160px_160px_100px] gap-4 items-center px-4 py-4 border-b border-border table-row-hover cursor-pointer"
+        className="grid grid-cols-[32px_1fr_auto_80px] sm:grid-cols-[40px_40px_1.5fr_150px_80px_160px_100px] lg:grid-cols-[40px_40px_1.5fr_150px_80px_160px_160px_100px] gap-3 sm:gap-4 items-center px-4 py-3 sm:py-4 border-b border-border table-row-hover cursor-pointer"
       >
         {/* Watchlist Star */}
         <button
@@ -180,7 +180,7 @@ export default function CoinTable() {
         </div>
 
         {/* Price */}
-        <span className="text-sm text-text-primary text-right font-mono">
+        <span className="text-sm text-text-primary text-right font-mono" title={formatPrice(coin.current_price)}>
           {formatPrice(coin.current_price)}
         </span>
 
@@ -256,13 +256,21 @@ export default function CoinTable() {
         <span>Koin</span>
         <span className="text-right">Harga</span>
         <span className="text-right">24j</span>
-        <div className="text-right tooltip-wrapper ml-auto">
-          <span className="cursor-help border-b border-dashed border-text-tertiary/50">Market Cap</span>
-          <div className="tooltip-text whitespace-normal w-48 text-center right-0 transform translate-x-1/4">Total duit dari semua koin yang beredar sekarang</div>
+        <div className="text-right ml-auto">
+          <span 
+            className="cursor-help border-b border-dashed border-text-tertiary/50"
+            title="Total duit dari semua koin yang beredar sekarang"
+          >
+            Market Cap
+          </span>
         </div>
-        <div className="text-right hidden lg:block tooltip-wrapper ml-auto">
-          <span className="cursor-help border-b border-dashed border-text-tertiary/50">Volume 24 Jam</span>
-          <div className="tooltip-text whitespace-normal w-48 text-center right-0 transform translate-x-1/4">Total duit yang dipake buat transaksi dalam 24 jam terakhir</div>
+        <div className="text-right hidden lg:block ml-auto">
+          <span 
+            className="cursor-help border-b border-dashed border-text-tertiary/50"
+            title="Total duit yang dipake buat transaksi dalam 24 jam terakhir"
+          >
+            Volume 24 Jam
+          </span>
         </div>
         <span className="text-right">Tren 7 Hari</span>
       </div>
@@ -302,7 +310,7 @@ export default function CoinTable() {
               disabled={page === 1}
               className="px-4 py-2 text-sm font-medium text-text-primary bg-surface border border-border rounded-lg hover:bg-surface-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              Mundur ⏪
+              Mundur
             </button>
             <span className="text-sm font-medium text-text-tertiary">
               Hal {page}
@@ -315,7 +323,7 @@ export default function CoinTable() {
               disabled={!hasMore}
               className="px-4 py-2 text-sm font-medium text-text-primary bg-surface border border-border rounded-lg hover:bg-surface-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              Lanjut ⏩
+              Lanjut
             </button>
           </div>
         </>

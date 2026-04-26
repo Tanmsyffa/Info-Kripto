@@ -79,17 +79,17 @@ export default function Chart({ coinId }: ChartProps) {
           const date = new Date(p[0]);
           let label: string;
           if (range === "1") {
-            label = date.toLocaleTimeString("en-US", {
+            label = date.toLocaleTimeString("id-ID", {
               hour: "2-digit",
               minute: "2-digit",
             });
           } else if (range === "365") {
-            label = date.toLocaleDateString("en-US", {
+            label = date.toLocaleDateString("id-ID", {
               month: "short",
               year: "2-digit",
             });
           } else {
-            label = date.toLocaleDateString("en-US", {
+            label = date.toLocaleDateString("id-ID", {
               month: "short",
               day: "numeric",
             });
@@ -166,22 +166,43 @@ export default function Chart({ coinId }: ChartProps) {
               vertical={false}
             />
             <XAxis
-              dataKey="label"
+              dataKey="time"
               tick={{ fontSize: 11, fill: "var(--color-text-tertiary)" }}
               axisLine={false}
               tickLine={false}
               interval="preserveStartEnd"
               minTickGap={50}
+              tickFormatter={(time) => {
+                const date = new Date(time);
+                if (range === "1") {
+                  return date.toLocaleTimeString("id-ID", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  });
+                } else if (range === "365") {
+                  return date.toLocaleDateString("id-ID", {
+                    month: "short",
+                    year: "2-digit",
+                  });
+                } else {
+                  return date.toLocaleDateString("id-ID", {
+                    month: "short",
+                    day: "numeric",
+                  });
+                }
+              }}
             />
             <YAxis
               tick={{ fontSize: 11, fill: "var(--color-text-tertiary)" }}
               axisLine={false}
               tickLine={false}
               domain={["auto", "auto"]}
-              tickFormatter={(v: number) =>
-                v >= 1 ? `$${v.toLocaleString()}` : `$${v.toFixed(4)}`
-              }
-              width={70}
+              tickFormatter={(v: number) => {
+                if (v >= 1000000) return `Rp ${(v / 1000000).toFixed(1)}jt`;
+                if (v >= 1000) return `Rp ${(v / 1000).toFixed(0)}rb`;
+                return `Rp ${v.toFixed(0)}`;
+              }}
+              width={80}
             />
             <Tooltip content={<CustomTooltip />} />
             <Area

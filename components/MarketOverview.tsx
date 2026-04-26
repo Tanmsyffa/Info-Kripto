@@ -143,18 +143,19 @@ export default function MarketOverview({ show = "all" }: { show?: "all" | "stats
       {/* Three columns: Trending, Gainers, Losers */}
       {(show === "all" || show === "lists") && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Trending */}
-          <div className="card card-hover p-0 overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
-              <Activity className="w-3.5 h-3.5 text-accent" />
-              <div className="tooltip-wrapper">
-                <h3 className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
-                  Lagi Hype 🔥
-                </h3>
-                <div className="tooltip-text">Koin yang lagi banyak diomongin orang-orang hari ini</div>
+          <div className="card card-hover p-0 border-none shadow-sm bg-surface/50 backdrop-blur-sm overflow-hidden">
+            <div 
+              className="flex items-center gap-2 px-5 py-4 border-b border-border/40 cursor-help"
+              title="Koin yang lagi banyak diomongin orang-orang hari ini"
+            >
+              <div className="p-1.5 bg-accent/10 rounded-lg">
+                <Activity className="w-4 h-4 text-accent" />
               </div>
+              <h3 className="text-[11px] font-black text-text-primary uppercase tracking-[0.1em]">
+                Lagi Hype
+              </h3>
             </div>
-            <div className="divide-y divide-border">
+            <div className="divide-y divide-border/30">
               {trending.slice(0, 5).map((t, i) => (
                 <Link
                   key={t.item.id}
@@ -180,18 +181,19 @@ export default function MarketOverview({ show = "all" }: { show?: "all" | "stats
             </div>
           </div>
 
-          {/* Top Gainers */}
-          <div className="card card-hover p-0 overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
-              <TrendingUp className="w-3.5 h-3.5 text-green" />
-              <div className="tooltip-wrapper">
-                <h3 className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
-                  Top Cuan 🚀
-                </h3>
-                <div className="tooltip-text">Koin yang ngasih untung paling gede hari ini</div>
+          <div className="card card-hover p-0 border-none shadow-sm bg-surface/50 backdrop-blur-sm overflow-hidden">
+            <div 
+              className="flex items-center gap-2 px-5 py-4 border-b border-border/40 cursor-help"
+              title="Koin yang ngasih untung paling gede hari ini"
+            >
+              <div className="p-1.5 bg-green/10 rounded-lg">
+                <TrendingUp className="w-4 h-4 text-green" />
               </div>
+              <h3 className="text-[11px] font-black text-text-primary uppercase tracking-[0.1em]">
+                Top Cuan
+              </h3>
             </div>
-            <div className="divide-y divide-border">
+            <div className="divide-y divide-border/30">
               {gainers.map((coin) => (
                 <Link
                   key={coin.id}
@@ -214,18 +216,19 @@ export default function MarketOverview({ show = "all" }: { show?: "all" | "stats
             </div>
           </div>
 
-          {/* Top Losers */}
-          <div className="card card-hover p-0 overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
-              <TrendingDown className="w-3.5 h-3.5 text-red" />
-              <div className="tooltip-wrapper">
-                <h3 className="text-xs font-semibold text-text-secondary uppercase tracking-wider">
-                  Lagi Nyungsep 🩸
-                </h3>
-                <div className="tooltip-text">Koin yang harganya lagi terjun payung hari ini</div>
+          <div className="card card-hover p-0 border-none shadow-sm bg-surface/50 backdrop-blur-sm overflow-hidden">
+            <div 
+              className="flex items-center gap-2 px-5 py-4 border-b border-border/40 cursor-help"
+              title="Koin yang harganya lagi terjun payung hari ini"
+            >
+              <div className="p-1.5 bg-red/10 rounded-lg">
+                <TrendingDown className="w-4 h-4 text-red" />
               </div>
+              <h3 className="text-[11px] font-black text-text-primary uppercase tracking-[0.1em]">
+                Lagi Nyungsep
+              </h3>
             </div>
-            <div className="divide-y divide-border">
+            <div className="divide-y divide-border/30">
               {losers.map((coin) => (
                 <Link
                   key={coin.id}
@@ -268,12 +271,16 @@ function StatCard({
 }) {
   return (
     <div className="card card-hover sm:p-4">
-      <div className="flex items-center gap-1.5 mb-1.5 tooltip-wrapper">
-        <span className="text-text-tertiary">{icon}</span>
-        <span className="text-[10px] text-text-tertiary uppercase tracking-wider cursor-help border-b border-dashed border-text-tertiary/50">
+      <div 
+        className="flex items-center gap-2 mb-2 cursor-help w-max"
+        title={tooltip}
+      >
+        <div className="p-1 bg-surface-alt rounded-lg border border-border/50">
+          <span className="text-text-secondary">{icon}</span>
+        </div>
+        <span className="text-[10px] font-bold text-text-tertiary uppercase tracking-wider">
           {label}
         </span>
-        {tooltip && <div className="tooltip-text">{tooltip}</div>}
       </div>
       <p className="text-base sm:text-lg font-semibold text-text-primary font-mono">
         {value}

@@ -91,7 +91,7 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link
@@ -99,8 +99,8 @@ export default function Navbar() {
             className="flex items-center gap-0 shrink-0 py-2"
             id="nav-logo"
           >
-            <img src="/Logo-InfoKripto.png" alt="Info Kripto Logo" className="h-14 w-auto -mr-5" />
-            <span className="text-2xl font-extrabold text-text-primary tracking-tighter hidden sm:block">
+            <img src="/Logo-InfoKripto.png" alt="Info Kripto Logo" className="h-12 sm:h-14 w-auto -mr-3 sm:-mr-5" />
+            <span className="text-xl sm:text-2xl font-extrabold text-text-primary tracking-tighter">
               Info Kripto!
             </span>
           </Link>
@@ -171,24 +171,26 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile search button */}
-          <button
-            onClick={() => {
-              setIsMobileSearch(true);
-              setTimeout(() => inputRef.current?.focus(), 100);
-            }}
-            className="sm:hidden p-2 text-text-secondary hover:text-text-primary"
-            id="mobile-search-btn"
-          >
-            <Search className="w-5 h-5" />
-          </button>
+          {/* Mobile Actions & Status */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            {/* Mobile search button */}
+            <button
+              onClick={() => {
+                setIsMobileSearch(true);
+                setTimeout(() => inputRef.current?.focus(), 100);
+              }}
+              className="sm:hidden p-2 bg-surface border border-border rounded-lg text-text-secondary hover:text-accent hover:border-accent/50 transition-colors shadow-sm"
+              id="mobile-search-btn"
+              aria-label="Search"
+            >
+              <Search className="w-4 h-4" />
+            </button>
 
-          {/* Status & Theme Toggle */}
-          <div className="flex items-center gap-4">
             <ThemeToggle />
-            <div className="flex items-center gap-1.5">
+            
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-green-dim rounded-full border border-green/20 shadow-sm">
               <div className="w-1.5 h-1.5 rounded-full bg-green pulse-dot" />
-              <span className="text-xs text-text-tertiary hidden md:block">
+              <span className="text-[10px] font-bold text-green uppercase tracking-wider hidden sm:block">
                 Live
               </span>
             </div>
@@ -200,9 +202,9 @@ export default function Navbar() {
       {isMobileSearch && (
         <div
           ref={containerRef}
-          className="absolute inset-x-0 top-0 bg-background border-b border-border p-3 sm:hidden z-50 fade-in"
+          className="absolute inset-x-0 top-0 bg-background/95 backdrop-blur-xl border-b border-border p-3 sm:hidden z-50 fade-in shadow-xl"
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-tertiary" />
               <input
@@ -210,8 +212,8 @@ export default function Navbar() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Mau nyari koin apa?"
-                className="w-full h-10 pl-9 pr-4 bg-surface border border-border rounded-lg text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-border-light"
+                placeholder="Cari koin (cth: BTC, Solana)"
+                className="w-full h-11 pl-9 pr-4 bg-surface border border-accent/30 rounded-xl text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent-dim transition-all shadow-sm"
               />
             </div>
             <button
@@ -219,14 +221,14 @@ export default function Navbar() {
                 setIsMobileSearch(false);
                 clearSearch();
               }}
-              className="text-sm text-text-secondary"
+              className="text-[10px] font-bold text-text-secondary hover:text-text-primary uppercase tracking-wider bg-surface px-3 py-2.5 rounded-xl border border-border shadow-sm transition-colors"
             >
-              Gak jadi
+              Tutup
             </button>
           </div>
 
           {isOpen && results.length > 0 && (
-            <div className="mt-2 bg-surface border border-border rounded-lg overflow-hidden max-h-80 overflow-y-auto">
+            <div className="mt-3 bg-surface border border-border rounded-xl overflow-hidden max-h-[70vh] overflow-y-auto shadow-2xl">
               {results.map((coin) => (
                 <Link
                   key={coin.id}
@@ -235,23 +237,23 @@ export default function Navbar() {
                     setIsMobileSearch(false);
                     clearSearch();
                   }}
-                  className="flex items-center gap-3 px-3 py-2.5 hover:bg-surface-hover transition-colors"
+                  className="flex items-center gap-3 px-4 py-3 hover:bg-surface-hover border-b border-border/50 last:border-0 transition-colors"
                 >
                   <img
                     src={coin.thumb}
                     alt={coin.name}
-                    className="w-6 h-6 rounded-full"
+                    className="w-7 h-7 rounded-full shadow-sm"
                   />
                   <div className="flex-1 min-w-0">
-                    <span className="text-sm text-text-primary font-medium">
+                    <span className="text-sm text-text-primary font-bold block truncate">
                       {coin.name}
                     </span>
-                    <span className="text-xs text-text-tertiary ml-2 uppercase">
+                    <span className="text-[10px] text-text-tertiary uppercase font-medium">
                       {coin.symbol}
                     </span>
                   </div>
                   {coin.market_cap_rank && (
-                    <span className="text-xs text-text-tertiary">
+                    <span className="text-[10px] font-mono text-text-tertiary bg-surface-alt px-1.5 py-0.5 rounded border border-border">
                       #{coin.market_cap_rank}
                     </span>
                   )}

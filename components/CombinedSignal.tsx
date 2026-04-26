@@ -141,16 +141,18 @@ export default function CombinedSignal({
         >
           <IconComponent className={`w-5 h-5 ${style.icon}`} />
         </div>
-        <div className="tooltip-wrapper">
+        <div>
           <div className="flex items-center gap-2">
             <h4 className={`text-sm font-semibold ${style.icon}`}>
               {signal.signal}
             </h4>
-            <span className="text-[10px] text-text-tertiary uppercase tracking-wider cursor-help border-b border-dashed border-text-tertiary/50">
+            <span 
+              className="text-[10px] text-text-tertiary uppercase tracking-wider cursor-help border-b border-dashed border-text-tertiary/50"
+              title="Gabungan dari prediksi harga dan sentimen berita di internet"
+            >
               Kesimpulan AI
             </span>
           </div>
-          <div className="tooltip-text">Gabungan dari prediksi harga dan sentimen berita di internet</div>
           <p className="text-xs text-text-secondary mt-1 leading-relaxed">
             {signal.description}
           </p>

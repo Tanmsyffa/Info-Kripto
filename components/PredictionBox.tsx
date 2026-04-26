@@ -95,28 +95,32 @@ export default function PredictionBox({
 
   return (
     <div id="prediction-box" className="space-y-4 fade-in">
-      <div className="flex items-center justify-between tooltip-wrapper">
-        <h3 className="text-sm font-semibold text-text-primary flex items-center gap-2 cursor-help border-b border-dashed border-text-tertiary/50">
+      <div className="flex items-center justify-between">
+        <h3 
+          className="text-sm font-semibold text-text-primary flex items-center gap-2 cursor-help border-b border-dashed border-text-tertiary/50"
+          title="Ini cuma ramalan AI dari data masa lalu, bukan wangsit mutlak buat investasi ya!"
+        >
           <Zap className="w-4 h-4 text-accent" />
           Bisikan AI 🤖
         </h3>
-        <div className="tooltip-text">Ini cuma ramalan AI dari data masa lalu, bukan wangsit mutlak buat investasi ya!</div>
         <span className="text-[10px] text-text-tertiary uppercase tracking-wider">
           Prakiraan 24 Jam
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Predicted Price */}
-        <div className="card p-3 flex flex-col justify-center">
-          <div className="flex items-center gap-1.5 mb-1 tooltip-wrapper">
+        <div className="card p-4 flex flex-col justify-center">
+          <div className="flex items-center gap-1.5 mb-1">
             <Target className="w-3.5 h-3.5 text-text-tertiary" />
-            <span className="text-[10px] text-text-tertiary uppercase tracking-wider cursor-help border-b border-dashed border-text-tertiary/50">
+            <span 
+              className="text-[10px] text-text-tertiary uppercase tracking-wider cursor-help border-b border-dashed border-text-tertiary/50"
+              title="Perkiraan harga koin ini besok menurut hitungan bot AI"
+            >
               Target Harga Besok
             </span>
-            <div className="tooltip-text">Perkiraan harga koin ini besok menurut hitungan bot AI</div>
           </div>
-          <p className="text-sm md:text-base font-semibold text-text-primary font-mono break-all sm:break-normal" title={formatPrice(prediction.predictedPrice)}>
+          <p className="text-sm md:text-base font-semibold text-text-primary font-mono mt-1" title={formatPrice(prediction.predictedPrice)}>
             {formatPrice(prediction.predictedPrice)}
           </p>
           <p
@@ -130,13 +134,15 @@ export default function PredictionBox({
         </div>
 
         {/* Trend */}
-        <div className="card p-3 flex flex-col justify-center relative overflow-hidden group">
-          <div className="flex items-center gap-1.5 mb-1.5 tooltip-wrapper">
+        <div className="card p-4 flex flex-col justify-center relative overflow-hidden group">
+          <div className="flex items-center gap-1.5 mb-1.5">
             <BarChart3 className="w-3.5 h-3.5 text-text-tertiary" />
-            <span className="text-[10px] text-text-tertiary uppercase tracking-wider cursor-help border-b border-dashed border-text-tertiary/50">
+            <span 
+              className="text-[10px] text-text-tertiary uppercase tracking-wider cursor-help border-b border-dashed border-text-tertiary/50"
+              title="Kecenderungan pergerakan harga dalam waktu dekat. Bakal terbang atau nyungsep?"
+            >
               Arah Harga
             </span>
-            <div className="tooltip-text">Kecenderungan pergerakan harga dalam waktu dekat. Bakal terbang atau nyungsep?</div>
           </div>
           <div className="flex flex-col min-w-0 flex-1">
             <span className={`text-base font-bold ${trend.color} leading-tight`}>
@@ -149,37 +155,43 @@ export default function PredictionBox({
         </div>
 
         {/* MA(7) */}
-        <div className="card p-3 tooltip-wrapper flex flex-col justify-center">
-          <span className="text-[10px] text-text-tertiary uppercase tracking-wider cursor-help border-b border-dashed border-text-tertiary/50 w-max">
+        <div className="card p-4 flex flex-col justify-center">
+          <span 
+            className="text-[10px] text-text-tertiary uppercase tracking-wider cursor-help border-b border-dashed border-text-tertiary/50 w-max"
+            title="Harga rata-rata selama 7 hari terakhir (seminggu)"
+          >
             Rata-rata Seminggu
           </span>
-          <div className="tooltip-text">Harga rata-rata selama 7 hari terakhir (seminggu)</div>
-          <p className="text-xs sm:text-sm font-medium text-text-primary font-mono mt-1 truncate" title={formatPrice(prediction.movingAverage7)}>
+          <p className="text-sm font-medium text-text-primary font-mono mt-1" title={formatPrice(prediction.movingAverage7)}>
             {formatPrice(prediction.movingAverage7)}
           </p>
         </div>
 
         {/* MA(30) */}
-        <div className="card p-3 tooltip-wrapper flex flex-col justify-center">
-          <span className="text-[10px] text-text-tertiary uppercase tracking-wider cursor-help border-b border-dashed border-text-tertiary/50 w-max">
+        <div className="card p-4 flex flex-col justify-center">
+          <span 
+            className="text-[10px] text-text-tertiary uppercase tracking-wider cursor-help border-b border-dashed border-text-tertiary/50 w-max"
+            title="Harga rata-rata selama 30 hari terakhir (sebulan)"
+          >
             Rata-rata Sebulan
           </span>
-          <div className="tooltip-text">Harga rata-rata selama 30 hari terakhir (sebulan)</div>
-          <p className="text-xs sm:text-sm font-medium text-text-primary font-mono mt-1 truncate" title={formatPrice(prediction.movingAverage30)}>
+          <p className="text-sm font-medium text-text-primary font-mono mt-1" title={formatPrice(prediction.movingAverage30)}>
             {formatPrice(prediction.movingAverage30)}
           </p>
         </div>
       </div>
 
       {/* Confidence bar */}
-      <div className="space-y-1.5 tooltip-wrapper w-full">
-        <div className="flex justify-between text-xs w-full cursor-help">
+      <div className="space-y-1.5 w-full">
+        <div 
+          className="flex justify-between text-xs w-full cursor-help"
+          title="Seberapa pede si bot AI ini sama hasil tebakannya"
+        >
           <span className="text-text-tertiary border-b border-dashed border-text-tertiary/50">Tingkat Pede AI</span>
           <span className="text-text-secondary font-medium">
             {prediction.confidence}%
           </span>
         </div>
-        <div className="tooltip-text">Seberapa pede si bot AI ini sama hasil tebakannya</div>
         <div className="w-full h-1.5 bg-border rounded-full overflow-hidden mt-1">
           <div
             className="h-full rounded-full transition-all duration-500"

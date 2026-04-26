@@ -43,7 +43,7 @@ export default function AboutPage() {
       <section className="px-4 py-20 sm:px-6 lg:px-8 bg-surface-alt/50 border-y border-border">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-text-primary mb-4">Kenapa Harus Info Kripto!? 🤔</h2>
+            <h2 className="text-3xl font-bold text-text-primary mb-4">Kenapa Harus Info Kripto!?</h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
               Kita buang jauh-jauh grafik ruwet sama bahasa dewa yang bikin mabok. Semuanya dibikin chill biar lu gampang ngertinya.
             </p>
@@ -98,7 +98,7 @@ export default function AboutPage() {
       <section className="px-4 py-24 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-text-primary mb-4">Mau Ngobrol? 🤙</h2>
+            <h2 className="text-3xl font-bold text-text-primary mb-4">Mau Ngobrol?</h2>
             <p className="text-text-secondary">
               Ada ide keren, atau nemu bug? Sabi lah kontak gue lewat link di bawah ini.
             </p>

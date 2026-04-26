@@ -25,23 +25,23 @@
 }
 
 :root {
-  /* === LIGHT COMPANY STYLE PALETTE === */
-  --theme-background: #f8fafc;
+  /* === LIGHT PREMIUM PALETTE === */
+  --theme-background: #f4f7fb;
   --theme-surface: #ffffff;
-  --theme-surface-alt: #f1f5f9;
-  --theme-surface-hover: #e2e8f0;
+  --theme-surface-alt: #f8fafc;
+  --theme-surface-hover: #f1f5f9;
 
-  --theme-border: #e2e8f0;
-  --theme-border-light: #cbd5e1;
+  --theme-border: rgba(15, 23, 42, 0.06);
+  --theme-border-light: rgba(15, 23, 42, 0.1);
 
   --theme-text-primary: #0f172a;
-  --theme-text-secondary: #475569;
+  --theme-text-secondary: #334155;
   --theme-text-tertiary: #64748b;
 
-  /* Blue accent — professional, corporate, bright but safe */
-  --theme-accent: #2563eb;
-  --theme-accent-hover: #1d4ed8;
-  --theme-accent-dim: rgba(37, 99, 235, 0.1);
+  /* Premium Royal Blue accent */
+  --theme-accent: #3b82f6;
+  --theme-accent-hover: #2563eb;
+  --theme-accent-dim: rgba(59, 130, 246, 0.08);
 
   /* Semantic colors */
   --theme-green: #10b981;
@@ -55,20 +55,20 @@
 }
 
 .dark {
-  /* === WARM PREMIUM DARK PALETTE === */
-  --theme-background: #0c0f1a;
-  --theme-surface: #141828;
-  --theme-surface-alt: #1a1f35;
-  --theme-surface-hover: #1e2440;
+  /* === DARK PREMIUM OLED PALETTE === */
+  --theme-background: #09090b;
+  --theme-surface: #121214;
+  --theme-surface-alt: #18181b;
+  --theme-surface-hover: #27272a;
 
-  --theme-border: #252d48;
-  --theme-border-light: #2e3756;
+  --theme-border: rgba(255, 255, 255, 0.08);
+  --theme-border-light: rgba(255, 255, 255, 0.15);
 
-  --theme-text-primary: #eef0f6;
-  --theme-text-secondary: #a0a8c4;
-  --theme-text-tertiary: #636e8e;
+  --theme-text-primary: #fafafa;
+  --theme-text-secondary: #a1a1aa;
+  --theme-text-tertiary: #71717a;
 
-  /* Blue accent — matching light mode but adapted for dark background */
+  /* Vivid Blue accent for contrast */
   --theme-accent: #3b82f6;
   --theme-accent-hover: #60a5fa;
   --theme-accent-dim: rgba(59, 130, 246, 0.15);
@@ -128,47 +128,25 @@ body {
 .card {
   background: var(--theme-surface);
   border: 1px solid var(--theme-border);
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s;
 }
 
-.card-hover {
-  transition: border-color 0.2s, box-shadow 0.2s;
+.dark .card {
+  box-shadow: none; /* OLED black doesn't need outer shadows as much */
 }
+
 .card-hover:hover {
-  border-color: var(--theme-accent);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08), 0 1px 3px rgba(37, 99, 235, 0.05);
+  transform: translateY(-2px);
+  border-color: var(--theme-border-light);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06), 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
-/* === TOOLTIP === */
-.tooltip-wrapper {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  cursor: help;
+.dark .card-hover:hover {
+  border-color: var(--theme-border-light);
+  box-shadow: 0 0 0 1px var(--theme-border-light);
 }
-.tooltip-wrapper .tooltip-text {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  bottom: calc(100% + 6px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--theme-surface-alt);
-  border: 1px solid var(--theme-border);
-  color: var(--theme-text-secondary);
-  font-size: 11px;
-  font-weight: 400;
-  padding: 6px 10px;
-  border-radius: 6px;
-  white-space: nowrap;
-  z-index: 50;
-  transition: opacity 0.15s;
-  pointer-events: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-.tooltip-wrapper:hover .tooltip-text {
-  visibility: visible;
-  opacity: 1;
-}
+
+/* Removed custom tooltip to use Tailwind classes */

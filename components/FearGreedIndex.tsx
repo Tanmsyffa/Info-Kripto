@@ -47,55 +47,54 @@ export default function FearGreedIndex() {
   const theme = getTheme(value);
 
   return (
-    <div className={`card ${theme.bg} ${theme.border} p-4 h-full flex items-center relative transition-all card-hover group overflow-hidden`}>
-      <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
+    <div className={`card ${theme.bg} ${theme.border} p-5 h-full flex items-center relative transition-all card-hover group overflow-hidden border-none shadow-sm`}>
+      <div className="flex flex-col sm:flex-row items-center gap-6 w-full">
         {/* Left side: Value */}
-        <div className="flex items-center gap-3 pr-4 border-b sm:border-b-0 sm:border-r border-border/50 h-full">
-          <div className={`w-10 h-10 rounded-xl ${theme.bg} border ${theme.border} flex items-center justify-center shrink-0`}>
-            <Gauge className={`w-5 h-5 ${theme.color}`} />
+        <div className="flex items-center gap-4 pr-6 border-b sm:border-b-0 sm:border-r border-border/20 h-full">
+          <div className={`w-12 h-12 rounded-2xl ${theme.bg} border ${theme.border} flex items-center justify-center shrink-0 shadow-sm`}>
+            <Gauge className={`w-6 h-6 ${theme.color}`} />
           </div>
           <div className="flex flex-col">
-            <span className={`text-xl sm:text-2xl font-black ${theme.color} leading-none tracking-tighter`}>
+            <span className={`text-3xl font-black ${theme.color} leading-none tracking-tighter`}>
               {fng.value}
             </span>
-            <span className={`text-[9px] font-black uppercase mt-1 ${theme.color} tracking-tighter`}>
+            <span className={`text-[10px] font-black uppercase mt-1.5 ${theme.color} tracking-[0.1em]`}>
               {fng.value_classification}
             </span>
           </div>
         </div>
 
         {/* Right side: Bar & Text */}
-        <div className="flex-1 w-full space-y-2">
+        <div className="flex-1 w-full space-y-3">
           <div className="flex items-center justify-between gap-4">
-            <div className="flex-1 h-1.5 rounded-full bg-background/50 border border-border/50 overflow-hidden">
+            <div className="flex-1 h-2 rounded-full bg-background/40 border border-border/10 overflow-hidden">
               <div 
-                className="h-full transition-all duration-1000 ease-out"
+                className="h-full transition-all duration-1000 ease-out rounded-full"
                 style={{ 
-                  width: `${fng.value}%`,
-                  backgroundColor: `var(--color-${theme.color.split('-')[1]})`,
-                  boxShadow: `0 0 12px var(--color-${theme.color.split('-')[1]})55`
+                   width: `${fng.value}%`,
+                   background: `linear-gradient(90deg, transparent, var(--color-${theme.color.split('-')[1]}))`,
+                   backgroundColor: `var(--color-${theme.color.split('-')[1]})`,
+                   boxShadow: `0 0 15px var(--color-${theme.color.split('-')[1]})44`
                 }}
               />
             </div>
-            <div className="flex items-center gap-2 text-[9px] font-bold text-text-tertiary uppercase whitespace-nowrap tracking-wider">
+            <div className="flex items-center gap-2 text-[9px] font-black text-text-tertiary uppercase whitespace-nowrap tracking-widest opacity-60">
               <span>Panic</span>
-              <div className="w-1 h-1 rounded-full bg-border" />
+              <div className="w-1 h-1 rounded-full bg-text-tertiary/20" />
               <span>Maruk</span>
             </div>
           </div>
-          <p className="text-[10px] text-text-tertiary italic leading-tight">
-            <span className={`font-bold ${theme.color}`}>{theme.label}</span>. {value < 30 ? "Pas nih buat serok cicil." : value > 70 ? "Hati-hati bro, udah mulai kemanisan." : "Market masih adem ayem."}
+          <p className="text-[11px] text-text-secondary leading-relaxed">
+            <span className={`font-black ${theme.color} uppercase tracking-wide`}>{theme.label}</span>. {value < 30 ? "Pas nih buat serok cicil." : value > 70 ? "Hati-hati bro, udah mulai kemanisan." : "Market masih adem ayem."}
           </p>
         </div>
         
         {/* Info button */}
-        <div className="hidden sm:block absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <div className="tooltip-wrapper">
-            <Info className="w-3.5 h-3.5 text-text-tertiary/50" />
-            <div className="tooltip-text w-48 text-center text-[10px] right-0 translate-x-0">
-              Indikator psikologi trader. Merah (takut) waktunya serok, Hijau (maruk) waktunya waspada.
-            </div>
-          </div>
+        <div 
+          className="hidden sm:block absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity cursor-help p-1 hover:bg-surface-alt rounded-lg"
+          title="Indikator psikologi trader. Merah (takut) waktunya serok, Hijau (maruk) waktunya waspada."
+        >
+          <Info className="w-4 h-4 text-text-tertiary/40" />
         </div>
       </div>
     </div>

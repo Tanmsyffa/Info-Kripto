@@ -32,7 +32,7 @@ export default async function CoinDetailPage({
     coin = await fetchCoinDetail(id);
   } catch {
     return (
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-20 text-center">
+    <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-6">
         <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-red-dim mb-4">
           <ArrowLeft className="w-6 h-6 text-red" />
         </div>
@@ -77,7 +77,7 @@ export default async function CoinDetailPage({
     | undefined;
 
   return (
-    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-6">
+    <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-6">
       {/* Back link */}
       <Link
         href="/dashboard"
@@ -273,15 +273,15 @@ function StatItem({
   tooltip?: string;
 }) {
   return (
-    <div className="card">
-      <div className={`tooltip-wrapper ${tooltip ? 'cursor-help border-b border-dashed border-text-tertiary/50' : ''}`}>
-        <span className="text-[10px] text-text-tertiary uppercase tracking-wider block mb-1">
-          {label}
-        </span>
-        {tooltip && <div className="tooltip-text w-32 whitespace-normal text-center left-1/2 transform -translate-x-1/2">{tooltip}</div>}
-      </div>
+    <div className="card card-hover p-4 border-none shadow-sm bg-surface/50 backdrop-blur-sm">
+      <span 
+        className={`text-[10px] text-text-tertiary uppercase tracking-widest font-black block mb-2 w-max ${tooltip ? 'cursor-help border-b border-dashed border-text-tertiary/40' : ''}`}
+        title={tooltip}
+      >
+        {label}
+      </span>
       <span
-        className={`text-sm font-medium font-mono block ${
+        className={`text-sm sm:text-base font-bold font-mono block ${
           isChange
             ? positive
               ? "text-green"

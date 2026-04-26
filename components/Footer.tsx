@@ -4,8 +4,8 @@ import { TrendingUp } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="border-t border-border mt-12 py-8 bg-surface-alt/30">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-0">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 flex flex-col items-center justify-center gap-2">
+        <div className="flex items-center gap-0 -ml-4">
           <img src="/Logo-InfoKripto.png" alt="Info Kripto Logo" className="h-14 w-auto -mr-5" />
           <span className="text-xl font-extrabold text-text-primary tracking-tighter">
             Info Kripto!

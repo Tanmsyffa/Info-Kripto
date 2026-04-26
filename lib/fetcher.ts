@@ -97,6 +97,7 @@ export async function searchCoins(query: string) {
 
 export function formatPrice(price: number | null | undefined): string {
   if (price == null) return "—";
+
   if (price >= 100) {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -105,6 +106,7 @@ export function formatPrice(price: number | null | undefined): string {
       maximumFractionDigits: 0,
     }).format(price);
   }
+  
   return new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",
@@ -118,8 +120,8 @@ export function formatMarketCap(value: number | null | undefined): string {
   if (value >= 1e12) return `Rp ${(value / 1e12).toFixed(2)} Triliun`;
   if (value >= 1e9) return `Rp ${(value / 1e9).toFixed(2)} Miliar`;
   if (value >= 1e6) return `Rp ${(value / 1e6).toFixed(2)} Juta`;
-  if (value >= 1e3) return `Rp ${(value / 1e3).toFixed(2)} Ribu`;
-  return `Rp ${value.toFixed(2)}`;
+  if (value >= 1e3) return `Rp ${(value / 1e3).toFixed(1)} Ribu`;
+  return `Rp ${value.toLocaleString("id-ID")}`;
 }
 
 export function formatPercentage(value: number | null | undefined): string {

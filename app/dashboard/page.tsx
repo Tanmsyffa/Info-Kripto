@@ -18,7 +18,7 @@ export default function HomePage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl font-black text-text-primary">
-            Kondisi Market Hari Ini 📈
+            Kondisi Market Hari Ini
           </h1>
           <p className="text-[11px] text-text-tertiary mt-0.5">
             Pantau pergerakan harga koin sama tren market yang lagi hype sekarang
@@ -27,9 +27,9 @@ export default function HomePage() {
         <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
           <button 
             onClick={() => setIsCompareOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-surface border border-border rounded-lg text-[10px] font-black text-text-secondary hover:text-accent hover:border-accent/50 transition-colors whitespace-nowrap shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-surface/80 backdrop-blur border border-border/50 rounded-xl text-[11px] font-black text-text-secondary hover:text-accent hover:border-accent/30 hover:bg-surface transition-all whitespace-nowrap shadow-sm hover:shadow-md"
           >
-            <GitCompare className="w-3.5 h-3.5" />
+            <GitCompare className="w-4 h-4" />
             VS MODE
           </button>
           <CalculatorModal />
@@ -53,11 +53,14 @@ export default function HomePage() {
       </div>
       
       {/* Row 3: Coin Table (Full Width) */}
-      <div className="space-y-3">
-        <h2 className="text-xs font-black text-text-secondary uppercase tracking-widest px-1">
-          List Koin Kripto
-        </h2>
-        <div className="border border-border rounded-xl overflow-hidden bg-surface shadow-sm">
+      <div className="space-y-4 pt-4">
+        <div className="flex items-center gap-3 px-1">
+          <h2 className="text-sm font-black text-text-primary uppercase tracking-widest">
+            List Koin Kripto
+          </h2>
+          <div className="flex-1 h-px bg-border/50"></div>
+        </div>
+        <div className="border border-border/50 rounded-2xl overflow-hidden bg-surface shadow-sm">
           <CoinTable />
         </div>
       </div>
